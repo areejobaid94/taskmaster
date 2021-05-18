@@ -1,7 +1,3 @@
-# taskmaster
-
-Documentation
-
 # TaskMaster
 
 ## This App is to manege tasks => add and show tasks.
