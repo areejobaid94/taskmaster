@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rec_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -13,11 +14,11 @@
         android:text="User Tasks"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.141" />
+        app:layout_constraintVertical_bias="0.215" />
 
     <Button
         android:id="@+id/addTask"
@@ -54,38 +55,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:layout_width="323dp"
-        android:layout_height="384dp"
-        android:orientation="vertical"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_id_new"
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379" />
 
-        <Button
-            android:id="@+id/task1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="120dip"
-            android:text="Task 1"
-            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/task2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="120dip"
-            android:text="Task 2"
-            android:textSize="20sp" />
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recyView"-->
+    <!--        android:layout_width="409dp"-->
+    <!--        android:layout_height="95dp"-->
+    <!--        tools:layout_editor_absoluteX="1dp"-->
+    <!--        tools:layout_editor_absoluteY="1dp" />-->
 
-        <Button
-            android:id="@+id/task3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="120dip"
-            android:text="Task 3"
-            android:textSize="20sp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
