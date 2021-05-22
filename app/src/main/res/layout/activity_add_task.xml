@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Task Title"
@@ -43,9 +44,10 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Task Description"
+            android:hint="Task Body"
             android:text="Do Something" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,6 +61,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources
+        android:layout_marginBottom="581dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <string-array name="planets_array">
+
+            <item>Mercury</item>
+
+            <item>Venus</item>
+
+            <item>Earth</item>
+
+            <item>Mars</item>
+
+            <item>Jupiter</item>
+
+            <item>Saturn</item>
+
+            <item>Uranus</item>
+
+            <item>Neptune</item>
+        </string-array>
+    </resources>
     <Button
         android:id="@+id/addTask_add"
         android:layout_width="189dp"

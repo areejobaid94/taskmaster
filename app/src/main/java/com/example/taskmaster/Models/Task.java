@@ -1,17 +1,31 @@
 package com.example.taskmaster.Models;
 
-public class TaskModel {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
+public class Task {
+
+    @ColumnInfo(name = "title")
     private String title;
+
+    @ColumnInfo(name = "body")
     private String body;
+
+    @ColumnInfo(name = "state")
     private int state;
 
-    public TaskModel(String title, String body, int state) {
+    @PrimaryKey
+    public int uid;
+
+    public Task(String title, String body, int state) {
         this.title = title;
         this.body = body;
         this.state = state;
     }
 
-    public TaskModel() {
+    public Task() {
     }
 
     public String getTitle() {

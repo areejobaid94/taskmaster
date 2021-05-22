@@ -12,7 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.taskmaster.Models.TaskModel;
+import com.example.taskmaster.Databases.AppDataBase;
+import com.example.taskmaster.Models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +26,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        List<TaskModel> tasks = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
         super.onCreate(savedInstanceState);
         super.onStart();
         setContentView(R.layout.activity_main);
 //        setupRecyclerView(R.layout.task);
 
         recyclerView = (RecyclerView) findViewById(R.id.rec_id_new);
-        tasks.add(new TaskModel("Task 1", "The first task body",2));
-        tasks.add(new TaskModel("Task 2", "The 2nd task body",1));
-        tasks.add(new TaskModel("Task 3", "The 3rd task body",0));
+//        tasks.add(new Task("Task 1", "The first task body",2));
+//        tasks.add(new Task("Task 2", "The 2nd task body",1));
+//        tasks.add(new Task("Task 3", "The 3rd task body",0));
+        tasks = AppDataBase.getAppDataBase(getApplicationContext()).taskDao().getAll();
         taskAdpater = new TaskAdpater(this,tasks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(taskAdpater);
