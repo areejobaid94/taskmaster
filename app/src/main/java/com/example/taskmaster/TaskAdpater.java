@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskmaster.Models.TaskModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdpater extends RecyclerView.Adapter<TaskAdpater.ViewHolder> {

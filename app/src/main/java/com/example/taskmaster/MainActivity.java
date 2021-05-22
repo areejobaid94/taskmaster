@@ -35,10 +35,9 @@ public class MainActivity extends AppCompatActivity {
         tasks.add(new TaskModel("Task 1", "The first task body",2));
         tasks.add(new TaskModel("Task 2", "The 2nd task body",1));
         tasks.add(new TaskModel("Task 3", "The 3rd task body",0));
-        System.out.println(tasks.get(2));
         taskAdpater = new TaskAdpater(this,tasks);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(taskAdpater);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         TextView welcome =  findViewById(R.id.usernameTasks);
         if(preferences.getString("username","User") != ""){
