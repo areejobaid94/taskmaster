@@ -60,10 +60,10 @@ public class AddTaskActivity extends AppCompatActivity {
                     AppDataBase.getAppDataBase(getApplicationContext()).taskDao().insertAll(new Task(titleField.getText().toString(),bodyField.getText().toString(),selectedItem));
                     TextView submitted  =  findViewById(R.id.submitted);
                     submitted.setText("submitted!");
+                    startActivity(intent);
                 }else {
                     TextView submitted  =  findViewById(R.id.submitted);
                     submitted.setText("Fill out all required fields");
-                    startActivity(intent);
                 }
 
             }

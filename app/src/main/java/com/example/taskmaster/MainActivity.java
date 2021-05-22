@@ -22,11 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private TaskAdpater taskAdpater;
-
-
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        List<Task> tasks = AppDataBase.getAppDataBase(getApplicationContext()).taskDao().getAll();
+        taskAdpater = new TaskAdpater(this,tasks);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(taskAdpater);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        List<Task> tasks = new ArrayList<>();
         super.onCreate(savedInstanceState);
         super.onStart();
         setContentView(R.layout.activity_main);
@@ -36,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
 //        tasks.add(new Task("Task 1", "The first task body",2));
 //        tasks.add(new Task("Task 2", "The 2nd task body",1));
 //        tasks.add(new Task("Task 3", "The 3rd task body",0));
-        tasks = AppDataBase.getAppDataBase(getApplicationContext()).taskDao().getAll();
-        taskAdpater = new TaskAdpater(this,tasks);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(taskAdpater);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         TextView welcome =  findViewById(R.id.usernameTasks);
         if(preferences.getString("username","User") != ""){
