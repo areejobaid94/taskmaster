@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         setContentView(R.layout.activity_main);
 //        setupRecyclerView(R.layout.task);
+
         android.text.format.DateFormat.getDateFormat(getApplicationContext());
         recyclerView = (RecyclerView) findViewById(R.id.rec_id_new);
 //        tasks.add(new Task("Task 1", "The first task body",2));
