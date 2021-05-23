@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskmaster.Models.TaskModel;
+import com.example.taskmaster.Models.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdpater extends RecyclerView.Adapter<TaskAdpater.ViewHolder> {
@@ -28,10 +26,10 @@ public class TaskAdpater extends RecyclerView.Adapter<TaskAdpater.ViewHolder> {
     }
 
     private Context context;
-    private List<TaskModel> tasks;
+    private List<Task> tasks;
 
 
-    public TaskAdpater(Context context,  List<TaskModel> tasksList){
+    public TaskAdpater(Context context,  List<Task> tasksList){
         this.context =context;
         this.tasks = tasksList;
     }
@@ -45,10 +43,10 @@ public class TaskAdpater extends RecyclerView.Adapter<TaskAdpater.ViewHolder> {
 
     @Override
     public void onBindViewHolder(TaskAdpater.ViewHolder holder, int position) {
-        TaskModel task = tasks.get(position);
-        holder.title.setText(task.getTitle());
-        holder.body.setText(task.getBody());
-        String status = task.getState() == 1 ? "new" : task.getState() == 2 ? "assigned" : task.getState() == 3 ? "in progress" :"complete" ;
+        Task task = tasks.get(position);
+        holder.title.setText(task.title);
+        holder.body.setText(task.body);
+        String status = task.state == 1 ? "new" : task.state == 2 ? "assigned" : task.state == 3 ? "in progress" :"complete" ;
         holder.state.setText(status);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
