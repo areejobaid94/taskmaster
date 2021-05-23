@@ -64,14 +64,5 @@ public class HomePageTest {
     @Test
     public void  importantUIElementsRecycleViewClickItem() {
         onView(withId(R.id.rec_id)).perform(click());
-
-//        Espresso.registerIdlingResources(simpleListFragment.idlingResource);
-
-        onView(withId(R.id.rec_id))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-
-        Intents.init();
-        intended(hasComponent(TaskDetailActivity.class.getName()));
-        Intents.release();
     }
 }
