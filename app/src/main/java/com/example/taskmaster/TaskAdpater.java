@@ -46,7 +46,7 @@ public class TaskAdpater extends RecyclerView.Adapter<TaskAdpater.ViewHolder> {
         Task task = tasks.get(position);
         holder.title.setText(task.title);
         holder.body.setText(task.body);
-        String status = task.state == 1 ? "new" : task.state == 2 ? "assigned" : task.state == 3 ? "in progress" :"complete" ;
+        String status = task.state.name() ;
         holder.state.setText(status);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
