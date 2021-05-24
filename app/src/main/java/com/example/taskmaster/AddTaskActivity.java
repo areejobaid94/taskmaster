@@ -43,7 +43,7 @@ public class AddTaskActivity extends AppCompatActivity {
                                        int position, long id) {
                 Object item = adapterView.getItemAtPosition(position);
                 if (item != null) {
-                    selectedItem =  item.toString() == "new" ? 1: item.toString() == "assigned" ? 2 : item.toString() == "in progress" ? 3 : 4;
+                    selectedItem =  item.toString() == "new" ? 0: item.toString() == "assigned" ? 1 : item.toString() == "in progress" ? 2 : 3;
                 }
 
             }

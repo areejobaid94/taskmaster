@@ -15,3 +15,10 @@
 
 ### screenshots => lab 29;
 ![](./imgs/Screens.png)
+
+
+### screenshots => lab 31;
+![](./imgs/lab32.png)
+
+### screenshots => lab 32;
+![](./imgs/lab32.png)

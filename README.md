@@ -67,4 +67,14 @@ Ensure that the description and status of a tapped task are also displayed on th
 
 ##### Adding Espresso Testing
 
+
+### Class 32 with:
+
+##### * Add Task Form
+Modify your Add Task form to save the data entered in as a Task to DynamoDB.
+
+##### * Homepage
+Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB.
+
+
 #### [screenshots](./screenshots.md)
