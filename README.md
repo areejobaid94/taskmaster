@@ -62,4 +62,19 @@ Refactor your homepage’s RecyclerView to display all Task entities in your dat
 3- Detail Page
 Ensure that the description and status of a tapped task are also displayed on the detail page, in addition to the title. (Note that you can accomplish this by passing along the entire Task entity, or by passing along only its ID in the intent.)
 
+
+### SaturDay at 6:37 AM finish class 31 with:
+
+##### Adding Espresso Testing
+
+
+### Class 32 with:
+
+##### * Add Task Form
+Modify your Add Task form to save the data entered in as a Task to DynamoDB.
+
+##### * Homepage
+Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB.
+
+
 #### [screenshots](./screenshots.md)

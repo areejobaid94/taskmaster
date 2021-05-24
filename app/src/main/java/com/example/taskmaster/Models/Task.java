@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.amplifyframework.datastore.generated.model.State;
+
 @Entity
 public class Task {
 
@@ -14,12 +16,12 @@ public class Task {
     public  String body;
 
     @ColumnInfo(name = "state")
-    public  int state;
+    public State state;
 
     @PrimaryKey(autoGenerate = true)
     public int uid;
 
-    public Task(String title, String body, int state) {
+    public Task(String title, String body, State state) {
         this.title = title;
         this.body = body;
         this.state = state;
