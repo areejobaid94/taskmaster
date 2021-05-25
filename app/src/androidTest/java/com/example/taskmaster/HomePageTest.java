@@ -60,7 +60,7 @@ public class HomePageTest {
         onView(withId(R.id.rec_id)).check(matches(isDisplayed()));
     }
 
-    // Test important RecycleView click task in Main Activity "Title"
+    // Test important RecycleView click task in Main Activity => go to deltail page and check the "Title"
     @Test
     public void  importantUIElementsRecycleViewClickItemTitly() {
         onView(withId(R.id.rec_id)).perform(click());
@@ -68,7 +68,7 @@ public class HomePageTest {
         onView(withText("My Task")).check(matches(isDisplayed()));
     }
 
-    // Test important RecycleView click task in Main Activity "Description"
+    // Test important RecycleView click task in Main Activity => go to deltail page and check the "Description"
     @Test
     public void  importantUIElementsRecycleViewClickItemDescription() {
         onView(withId(R.id.rec_id)).perform(click());
