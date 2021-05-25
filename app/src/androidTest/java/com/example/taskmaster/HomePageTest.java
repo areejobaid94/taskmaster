@@ -60,9 +60,19 @@ public class HomePageTest {
         onView(withId(R.id.rec_id)).check(matches(isDisplayed()));
     }
 
-    // Test important RecycleView click task in Main Activity
+    // Test important RecycleView click task in Main Activity "Title"
     @Test
-    public void  importantUIElementsRecycleViewClickItem() {
+    public void  importantUIElementsRecycleViewClickItemTitly() {
         onView(withId(R.id.rec_id)).perform(click());
+        onView(withId(R.id.title)).check(matches(isDisplayed()));
+        onView(withText("My Task")).check(matches(isDisplayed()));
+    }
+
+    // Test important RecycleView click task in Main Activity "Description"
+    @Test
+    public void  importantUIElementsRecycleViewClickItemDescription() {
+        onView(withId(R.id.rec_id)).perform(click());
+        onView(withId(R.id.description)).check(matches(isDisplayed()));
+        onView(withText("Do Something")).check(matches(isDisplayed()));
     }
 }
