@@ -78,3 +78,12 @@ Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB
 
 
 #### [screenshots](./screenshots.md)
+### User Login
+Add Cognito to your Amplify setup. Add in user login and sign up flows to your application, using Cognito’s pre-built UI as appropriate. Display the logged in user’s username somewhere relevant in your app.
+
+### User Logout
+Allow users to log out of your application.
+
+
+### Class 36 - Cognito with:
+
