@@ -11,9 +11,13 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.taskmaster.Databases.AppDataBase;
 import com.example.taskmaster.Models.Task;
@@ -41,17 +45,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //        setupRecyclerView(R.layout.task);
         try {
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
-
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException e) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", e);
         }
+        findViewById(R.id.sign_up).setOnClickListener(v ->{
+            Intent signup = new Intent(this,SignUpActivity.class);
+            startActivity(signup);
+                });
+//
+//        AuthSignUpOptions options = AuthSignUpOptions.builder()
+//                .userAttribute(AuthUserAttributeKey.email(), "my@email.com")
+//                .build();
+//        Amplify.Auth.signUp("username", "Password123", options,
+//                result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
+//                error -> Log.e("AuthQuickStart", "Sign up failed", error)
+//        );
+        // Add this line, to include the Auth plugin.
+
+
         android.text.format.DateFormat.getDateFormat(getApplicationContext());
         recyclerView = (RecyclerView) findViewById(R.id.rec_id_new);
 //        tasks.add(new Task("Task 1", "The first task body",2));
 //        tasks.add(new Task("Task 2", "The 2nd task body",1));
 //        tasks.add(new Task("Task 3", "The 3rd task body",0));
+        findViewById(R.id.confirm).setOnClickListener(v->{
+            Intent conf = new Intent(this,ConfirmSignUpActivity.class);
+            conf.putExtra("username_signup", "Username");
+            startActivity(conf);
+        });
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         TextView welcome =  findViewById(R.id.usernameTasks);
         if(preferences.getString("username","User") != ""){
@@ -90,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
 //
 //        Button task1 =  findViewById(R.id.task1);
 //        task1.setOnClickListener(new View.OnClickListener() {
@@ -126,5 +152,19 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(k);
 //            }
 //        });
+        Amplify.Auth.signInWithWebUI(
+                this,
+                result -> Log.i("AuthQuickStart", result.toString()),
+                error -> Log.e("AuthQuickStart", error.toString())
+        );
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == AWSCognitoAuthPlugin.WEB_UI_SIGN_IN_ACTIVITY_CODE) {
+            Amplify.Auth.handleWebUISignInResponse(data);
+        }
     }
 }
