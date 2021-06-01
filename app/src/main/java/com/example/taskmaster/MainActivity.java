@@ -11,18 +11,14 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
-import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
-import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.taskmaster.Databases.AppDataBase;
 import com.example.taskmaster.Models.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -157,14 +153,16 @@ public class MainActivity extends AppCompatActivity {
                 result -> Log.i("AuthQuickStart", result.toString()),
                 error -> Log.e("AuthQuickStart", error.toString())
         );
-    }
+        findViewById(R.id.log_in).setOnClickListener(v -> {
+            Intent singin = new Intent(this, SignInActivity.class);
+            startActivity(singin);
+        });
+        findViewById(R.id.sign_out).setOnClickListener(v -> {
+            Amplify.Auth.fetchUserAttributes(
+                    attributes -> Log.i("AuthDemo", "User attributes = " + attributes.toString()),
+                    error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
+            );
+        });
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == AWSCognitoAuthPlugin.WEB_UI_SIGN_IN_ACTIVITY_CODE) {
-            Amplify.Auth.handleWebUISignInResponse(data);
-        }
     }
 }
