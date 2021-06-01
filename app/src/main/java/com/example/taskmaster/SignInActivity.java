@@ -22,6 +22,7 @@ public class SignInActivity extends AppCompatActivity {
         Amplify.Auth.fetchAuthSession(
                 result ->{
                     if(!result.isSignedIn()) {
+
                         Amplify.Auth.signInWithWebUI(
                                 this,
                                 results -> Log.i("AuthQuickStart failed1", results.toString()),

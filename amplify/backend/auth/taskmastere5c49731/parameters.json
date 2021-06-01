@@ -51,9 +51,9 @@
     "usernameCaseSensitive": false,
     "dependsOn": [],
     "hostedUI": true,
-    "hostedUIDomainName": "taskmaster4459bcc5-4459bcc5",
+    "hostedUIDomainName": "taskmastereab6b376-eab6b376",
     "authProvidersUserPool": [],
     "hostedUIProviderMeta": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"login://callback/\"],\"LogoutURLs\":[\"login://signout/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://callback/\"],\"LogoutURLs\":[\"myapp://signout/\"]}",
     "authProviders": []
 }

@@ -52,5 +52,59 @@
         "taskmastere5c49731": {}
       }
     }
+  },
+  "diva": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-taskmaster-diva-122944-authRole",
+      "UnauthRoleArn": "arn:aws:iam::071873654816:role/amplify-taskmaster-diva-122944-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::071873654816:role/amplify-taskmaster-diva-122944-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-taskmaster-diva-122944-deployment",
+      "UnauthRoleName": "amplify-taskmaster-diva-122944-unauthRole",
+      "StackName": "amplify-taskmaster-diva-122944",
+      "StackId": "arn:aws:cloudformation:us-east-1:071873654816:stack/amplify-taskmaster-diva-122944/e96538d0-c2bb-11eb-bcef-0eea077046db",
+      "AmplifyAppId": "d1xqriw5eiemup"
+    },
+    "categories": {
+      "auth": {
+        "taskmastere5c49731": {}
+      }
+    }
+  },
+  "divb": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-taskmaster-divb-123455-authRole",
+      "UnauthRoleArn": "arn:aws:iam::071873654816:role/amplify-taskmaster-divb-123455-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::071873654816:role/amplify-taskmaster-divb-123455-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-taskmaster-divb-123455-deployment",
+      "UnauthRoleName": "amplify-taskmaster-divb-123455-unauthRole",
+      "StackName": "amplify-taskmaster-divb-123455",
+      "StackId": "arn:aws:cloudformation:us-east-1:071873654816:stack/amplify-taskmaster-divb-123455/a29fbd70-c2bc-11eb-8a25-0a73682547f5",
+      "AmplifyAppId": "d1xqriw5eiemup"
+    },
+    "categories": {
+      "auth": {
+        "taskmastere5c49731": {}
+      }
+    }
+  },
+  "dive": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-taskmaster-dive-132357-authRole",
+      "UnauthRoleArn": "arn:aws:iam::071873654816:role/amplify-taskmaster-dive-132357-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::071873654816:role/amplify-taskmaster-dive-132357-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-taskmaster-dive-132357-deployment",
+      "UnauthRoleName": "amplify-taskmaster-dive-132357-unauthRole",
+      "StackName": "amplify-taskmaster-dive-132357",
+      "StackId": "arn:aws:cloudformation:us-east-1:071873654816:stack/amplify-taskmaster-dive-132357/7cc971c0-c2c3-11eb-8026-0a2f4587a347",
+      "AmplifyAppId": "d1xqriw5eiemup"
+    },
+    "categories": {
+      "auth": {
+        "taskmastere5c49731": {}
+      }
+    }
   }
 }

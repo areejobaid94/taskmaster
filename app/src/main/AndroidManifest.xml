@@ -14,7 +14,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="login" />
+                <data android:scheme="myapp" />
             </intent-filter>
         </activity>
         <activity android:name=".SignInActivity"></activity>

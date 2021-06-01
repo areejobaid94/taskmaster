@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(k);
 //            }
 //        });
+//        });
         findViewById(R.id.log_in).setOnClickListener(v -> {
             Intent singin = new Intent(this, SignInActivity.class);
             startActivity(singin);
