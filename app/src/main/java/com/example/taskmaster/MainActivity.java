@@ -20,6 +20,7 @@ import com.amplifyframework.core.Amplify;
 import com.example.taskmaster.Databases.AppDataBase;
 import com.example.taskmaster.Models.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,31 +53,23 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.sign_up).setOnClickListener(v ->{
             Intent signup = new Intent(this,SignUpActivity.class);
             startActivity(signup);
-                });
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
-        );
-        TextView welcome =  findViewById(R.id.usernameTasks);
+        });
+        TextView welcome = findViewById(R.id.usernameTasks);
+        welcome.setText("User" + "’s tasks");
         Amplify.Auth.fetchAuthSession(
                 result ->{
                     try {
                         Map<String, String> userData = AWSMobileClient.getInstance().getUserAttributes();
-                        if (userData.get("name")!=null){
-                            welcome.setText(userData.get("name"));
-                        }else
-                        {
-                            welcome.setText(AWSMobileClient.getInstance().getUsername());
+                        if (userData.get("name")==null){
+                            userData.put("name",AWSMobileClient.getInstance().getUsername());
                         }
+                        welcome.setText((userData.get("name") + "’s tasks"));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 },
                 error -> Log.e("AuthQuickStart ", error.toString())
         );
-//        welcomeMes = "User’s tasks";
-//        welcome.setText("User" + "’s tasks");
-
 //
 //        AuthSignUpOptions options = AuthSignUpOptions.builder()
 //                .userAttribute(AuthUserAttributeKey.email(), "my@email.com")
