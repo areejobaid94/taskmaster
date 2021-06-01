@@ -21,6 +21,7 @@ import com.example.taskmaster.Databases.AppDataBase;
 import com.example.taskmaster.Models.Task;
 
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,15 +60,23 @@ public class MainActivity extends AppCompatActivity {
         TextView welcome =  findViewById(R.id.usernameTasks);
         Amplify.Auth.fetchAuthSession(
                 result ->{
-                    if(result.isSignedIn()) {
-                        welcome.setText(AWSMobileClient.getInstance().getUsername());
-
-                    }else{
-                        welcome.setText("User" + "’s tasks");
+                    try {
+                        Map<String, String> userData = AWSMobileClient.getInstance().getUserAttributes();
+                        if (userData.get("name")!=null){
+                            welcome.setText(userData.get("name"));
+                        }else
+                        {
+                            welcome.setText(AWSMobileClient.getInstance().getUsername());
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 },
                 error -> Log.e("AuthQuickStart ", error.toString())
         );
+//        welcomeMes = "User’s tasks";
+//        welcome.setText("User" + "’s tasks");
+
 //
 //        AuthSignUpOptions options = AuthSignUpOptions.builder()
 //                .userAttribute(AuthUserAttributeKey.email(), "my@email.com")
