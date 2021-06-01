@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
@@ -51,6 +52,22 @@ public class MainActivity extends AppCompatActivity {
             Intent signup = new Intent(this,SignUpActivity.class);
             startActivity(signup);
                 });
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
+        TextView welcome =  findViewById(R.id.usernameTasks);
+        Amplify.Auth.fetchAuthSession(
+                result ->{
+                    if(result.isSignedIn()) {
+                        welcome.setText(AWSMobileClient.getInstance().getUsername());
+
+                    }else{
+                        welcome.setText("User" + "’s tasks");
+                    }
+                },
+                error -> Log.e("AuthQuickStart ", error.toString())
+        );
 //
 //        AuthSignUpOptions options = AuthSignUpOptions.builder()
 //                .userAttribute(AuthUserAttributeKey.email(), "my@email.com")
@@ -73,12 +90,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(conf);
         });
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        TextView welcome =  findViewById(R.id.usernameTasks);
-        if(preferences.getString("username","User") != ""){
-            welcome.setText(preferences.getString("username","User") + "’s tasks");
-        }else{
-            welcome.setText("User" + "’s tasks");
-        }
+//        TextView welcome =  findViewById(R.id.usernameTasks);
+//        if(preferences.getString("username","User") != ""){
+//            welcome.setText(preferences.getString("username","User") + "’s tasks");
+//        }else{
+//            welcome.setText("User" + "’s tasks");
+//        }
         Button button =  findViewById(R.id.addTask);
         TextView usernameTasks = findViewById(R.id.usernameTasks);
 
@@ -148,11 +165,6 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(k);
 //            }
 //        });
-        Amplify.Auth.signInWithWebUI(
-                this,
-                result -> Log.i("AuthQuickStart", result.toString()),
-                error -> Log.e("AuthQuickStart", error.toString())
-        );
         findViewById(R.id.log_in).setOnClickListener(v -> {
             Intent singin = new Intent(this, SignInActivity.class);
             startActivity(singin);

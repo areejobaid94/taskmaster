@@ -21,16 +21,16 @@
 
     <Button
         android:id="@+id/sign_out"
-        android:layout_width="117dp"
-        android:layout_height="56dp"
+        android:layout_width="95dp"
+        android:layout_height="49dp"
         android:text="SIGN OUT"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.121" />
 
     <TextView
         android:id="@+id/usernameTasks"
@@ -41,9 +41,10 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintVertical_bias="0.003" />
 
     <Button
         android:id="@+id/addTask"
