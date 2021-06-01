@@ -183,10 +183,9 @@ public class MainActivity extends AppCompatActivity {
             Amplify.Auth.fetchAuthSession(
                     result ->{
                         if(result.isSignedIn()) {
-                            Amplify.Auth.signInWithWebUI(
-                                    this,
-                                    results -> Log.i("AuthQuickStart failed1", results.toString()),
-                                    error -> Log.e("AuthQuickStart failed2", error.toString())
+                            Amplify.Auth.signOut(
+                                    () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                                    error -> Log.e("AuthQuickstart", error.toString())
                             );
                         }
                     },
