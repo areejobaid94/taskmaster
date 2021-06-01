@@ -180,10 +180,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(singin);
         });
         findViewById(R.id.sign_out).setOnClickListener(v -> {
-            Amplify.Auth.fetchUserAttributes(
-                    attributes -> Log.i("AuthDemo", "User attributes = " + attributes.toString()),
-                    error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
+            Amplify.Auth.fetchAuthSession(
+                    result ->{
+                        if(result.isSignedIn()) {
+                            Amplify.Auth.signInWithWebUI(
+                                    this,
+                                    results -> Log.i("AuthQuickStart failed1", results.toString()),
+                                    error -> Log.e("AuthQuickStart failed2", error.toString())
+                            );
+                        }
+                    },
+                    error -> Log.e("AuthQuickStart ", error.toString())
             );
+
         });
 
     }
