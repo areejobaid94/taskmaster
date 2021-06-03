@@ -17,6 +17,7 @@ import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.taskmaster.Databases.AppDataBase;
 import com.example.taskmaster.Models.Task;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException e) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", e);

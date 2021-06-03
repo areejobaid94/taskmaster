@@ -74,4 +74,6 @@ dependencies {
 
     // Support for Java 8 features
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation 'com.amplifyframework:aws-storage-s3:1.17.4'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.17.4'
 }
