@@ -9,7 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Taskmaster">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name="com.amazonaws.mobileconnectors.cognitoauth.activities.CustomTabsRedirectActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="myapp" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".ConfirmSignUpActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".TaskDetailActivity" />
         <activity android:name=".AllTasksActivity" />
         <activity android:name=".AddTaskActivity" />
@@ -20,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

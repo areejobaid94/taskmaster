@@ -1,7 +1,6 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.ColumnInfo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +13,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.amplifyframework.AmplifyException;
+//import com.amplifyframework.datastore.AWSDataStorePlugin;
+//import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
-import com.amplifyframework.datastore.generated.model.State;
-import com.amplifyframework.datastore.generated.model.Task;
 import com.example.taskmaster.Databases.AppDataBase;
+import com.example.taskmaster.Models.State;
+import com.example.taskmaster.Models.Task;
+
+import java.io.File;
 
 public class AddTaskActivity extends AppCompatActivity {
     private Spinner spinner;
@@ -62,21 +64,21 @@ public class AddTaskActivity extends AppCompatActivity {
                 EditText titleField = (EditText)findViewById(R.id.title);
                 EditText bodyField = (EditText)findViewById(R.id.body);
                 if((titleField.getText() != null) && titleField.getText().toString() != "" && bodyField.getText() != null && bodyField.getText().toString() != ""){
-//                    AppDataBase.getAppDataBase(getApplicationContext()).taskDao().insertAll(new Task(titleField.getText().toString(),bodyField.getText().toString(),selectedItem));
-                    try {
-                        Task item = Task.builder()
-                                .title(titleField.getText().toString())
-                                .body(bodyField.getText().toString())
-                                .state(State.values()[selectedItem])
-                                .build();
-                        Amplify.DataStore.save(item,
-                                success -> Log.i("Tutorial", "Saved item: " + success.item().getTitle()),
-                                error -> Log.e("Tutorial", "Could not save item to DataStore", error)
-                        );
-                        Log.i("Tutorial", "Initialized Amplify");
-                    } catch (Exception e) {
-                        Log.e("Tutorial", "Could not initialize Amplify", e);
-                    }
+                    AppDataBase.getAppDataBase(getApplicationContext()).taskDao().insertAll(new Task(titleField.getText().toString(),bodyField.getText().toString(), State.values()[selectedItem]));
+//                    try {
+//                        Task item = Task.builder()
+//                                .title(titleField.getText().toString())
+//                                .body(bodyField.getText().toString())
+//                                .state(State.values()[selectedItem])
+//                                .build();
+//                        Amplify.DataStore.save(item,
+//                                success -> Log.i("Tutorial", "Saved item: " + success.item().getTitle()),
+//                                error -> Log.e("Tutorial", "Could not save item to DataStore", error)
+//                        );
+//                        Log.i("Tutorial", "Initialized Amplify");
+//                    } catch (Exception e) {
+//                        Log.e("Tutorial", "Could not initialize Amplify", e);
+//                    }
                     TextView submitted  =  findViewById(R.id.submitted);
                     submitted.setText("submitted!");
                     startActivity(intent);
@@ -87,6 +89,34 @@ public class AddTaskActivity extends AppCompatActivity {
 
             }
         });
+        findViewById(R.id.upload_file).setOnClickListener(v -> {
+
+        });
+
+    }
+
+    private void getFile(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("*/*");
+        startActivityForResult(intent,9999);
+    };
+    private void uploadFile(File file, String fileName) {
+
+        Amplify.Storage.uploadFile(
+                fileName,
+                file,
+                result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
+                storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
+        );
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 9999) {
+            Amplify.Auth.handleWebUISignInResponse(data);
+        }
 
     }
 }

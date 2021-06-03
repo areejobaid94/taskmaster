@@ -77,4 +77,12 @@ Modify your Add Task form to save the data entered in as a Task to DynamoDB.
 Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB.
 
 
+### Class 36 - Cognito with:
+
+### User Login
+Add Cognito to your Amplify setup. Add in user login and sign up flows to your application, using Cognito’s pre-built UI as appropriate. Display the logged in user’s username somewhere relevant in your app.
+
+### User Logout
+Allow users to log out of your application.
+
 #### [screenshots](./screenshots.md)

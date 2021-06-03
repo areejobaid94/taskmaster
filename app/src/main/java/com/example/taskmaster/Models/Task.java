@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.amplifyframework.datastore.generated.model.State;
-
 @Entity
 public class Task {
 
