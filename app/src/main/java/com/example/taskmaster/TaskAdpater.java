@@ -16,12 +16,14 @@ import java.util.List;
 public class TaskAdpater extends RecyclerView.Adapter<TaskAdpater.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title, body, state;
+        TextView title, body, state,key,isImg;
         public ViewHolder (View itemView){
             super(itemView);
             title = itemView.findViewById(R.id.titleTask);
             body = itemView.findViewById(R.id.bodyTask);
             state = itemView.findViewById(R.id.statusTask);
+            key = itemView.findViewById(R.id.key);
+            isImg = itemView.findViewById(R.id.is_img);
         }
     }
 
@@ -48,15 +50,23 @@ public class TaskAdpater extends RecyclerView.Adapter<TaskAdpater.ViewHolder> {
         holder.body.setText(task.body);
         String status = task.state.name() ;
         holder.state.setText(status);
+        holder.isImg.setText(Boolean.toString(task.isImg));
+        holder.key.setText(task.key);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Intent k = new Intent(context, TaskDetailActivity.class);
                 TextView title = (TextView) v.findViewById(R.id.titleTask);
                 TextView description = (TextView) v.findViewById(R.id.bodyTask);
+                TextView key = (TextView) v.findViewById(R.id.key);
+                TextView is_img = (TextView) v.findViewById(R.id.is_img);
+
                 k.putExtra("title",title.getText().toString());
                 k.putExtra("description",description.getText().toString());
+                k.putExtra("key",key.getText().toString());
+                k.putExtra("is_img",is_img.getText().toString());
+                System.out.println("key " + key);
+                System.out.println("is_img " + is_img);
                 context.startActivity(k);
             }
         });

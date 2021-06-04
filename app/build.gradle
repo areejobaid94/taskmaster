@@ -76,4 +76,6 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation 'com.amplifyframework:aws-storage-s3:1.17.4'
     implementation 'com.amplifyframework:aws-auth-cognito:1.17.4'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile "commons-io:commons-io:+"
 }

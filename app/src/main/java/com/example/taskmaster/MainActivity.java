@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 //        setupRecyclerView(R.layout.task);
         try {
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.configure(getApplicationContext());
             Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.configure(getApplicationContext());
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException e) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", e);
