@@ -83,7 +83,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 Intent intent = new Intent(AddTaskActivity.this,MainActivity.class);
                 EditText titleField = (EditText)findViewById(R.id.title);
                 EditText bodyField = (EditText)findViewById(R.id.body);
-                if((titleField.getText() != null) && titleField.getText().toString() != "" && bodyField.getText() != null && bodyField.getText().toString() != ""){
+                if((!titleField.getText().equals(null)) && !titleField.getText().toString().equals("") && !bodyField.getText().equals(null) && !bodyField.getText().toString().equals("")){
 
                     AppDataBase.getAppDataBase(getApplicationContext()).taskDao().insertAll(new Task(titleField.getText().toString(),bodyField.getText().toString(), State.values()[selectedItem],key,is_img));
 //                    try {
@@ -112,7 +112,7 @@ public class AddTaskActivity extends AppCompatActivity {
         });
         findViewById(R.id.upload_file).setOnClickListener(v -> {
             fileName = ((EditText)findViewById(R.id.name_of_file_to)).getText().toString();
-            if(fileName != null){
+            if(!fileName.equals(null)){
                 getFile();
             }else {
                 TextView submitted  =  findViewById(R.id.submitted);
@@ -125,8 +125,6 @@ public class AddTaskActivity extends AppCompatActivity {
     private void getFile(){
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("*/*");
-        is_img = false;
-        key = this.fileName;
         startActivityForResult(intent,9999);
     };
     private void uploadFile(File file) {
@@ -136,15 +134,20 @@ public class AddTaskActivity extends AppCompatActivity {
                 result -> this.key =  result.getKey(),
                 storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
         );
+
     }
+
 
 //    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        is_img = false;
+        key = "";
         if (requestCode == 9999) {
             File file = new File(getApplicationContext().getFilesDir(),"uploads");
             if (resultCode == RESULT_OK) {
+                key = this.fileName;
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
