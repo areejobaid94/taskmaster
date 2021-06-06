@@ -20,6 +20,10 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.taskmaster.Databases.AppDataBase;
 import com.example.taskmaster.Models.Task;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +42,29 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(taskAdpater);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onStart();
         setContentView(R.layout.activity_main);
 //        setupRecyclerView(R.layout.task);
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@androidx.annotation.NonNull @NotNull com.google.android.gms.tasks.Task task) {
+
+                        if (!task.isSuccessful()) {
+                            Log.w("TAG", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = (String) task.getResult();
+                        Log.d("token",token);
+                    }
+                });
+
         try {
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSS3StoragePlugin());
@@ -94,12 +115,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(conf);
         });
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        TextView welcome =  findViewById(R.id.usernameTasks);
-//        if(preferences.getString("username","User") != ""){
-//            welcome.setText(preferences.getString("username","User") + "’s tasks");
-//        }else{
-//            welcome.setText("User" + "’s tasks");
-//        }
+
         Button button =  findViewById(R.id.addTask);
         TextView usernameTasks = findViewById(R.id.usernameTasks);
 
