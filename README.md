@@ -93,4 +93,9 @@ On the “Add a Task” activity, allow users to optionally select a file to att
 ### Displaying Files
 On the Task detail activity, if there is a file that is an image associated with a particular Task, that image should be displayed within that activity. (If the file is any other type, you should display a link to it.)
 
+### Class 38 - Notifications
+
+Manage to send notifications to all using firebase
+
+
 #### [screenshots](./screenshots.md)
