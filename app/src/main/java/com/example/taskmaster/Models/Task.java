@@ -16,12 +16,22 @@ public class Task {
     @ColumnInfo(name = "state")
     public State state;
 
+    @ColumnInfo(name = "key")
+    public String key;
+
+    @ColumnInfo(name = "isImg")
+    public boolean isImg;
+
     @PrimaryKey(autoGenerate = true)
     public int uid;
 
-    public Task(String title, String body, State state) {
+    public Task(String title, String body, State state,String key,boolean isImg) {
         this.title = title;
         this.body = body;
         this.state = state;
+        this.key = key;
+        this.isImg = isImg;
+    }
+    public Task() {
     }
 }

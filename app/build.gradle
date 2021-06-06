@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -71,9 +72,19 @@ dependencies {
     // Amplify core dependency
     implementation 'com.amplifyframework:core:1.17.4'
     implementation 'com.amplifyframework:aws-auth-cognito:1.17.4'
-
+    implementation platform('com.google.firebase:firebase-bom:28.1.0')
     // Support for Java 8 features
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation 'com.amplifyframework:aws-storage-s3:1.17.4'
+    implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.amplifyframework:aws-auth-cognito:1.17.4'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile "commons-io:commons-io:+"
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:28.1.0')
+
+    // Declare the dependencies for the Firebase Cloud Messaging and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
 }
