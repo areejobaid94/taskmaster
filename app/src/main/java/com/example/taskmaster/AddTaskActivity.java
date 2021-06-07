@@ -150,7 +150,7 @@ public class AddTaskActivity extends AppCompatActivity {
             }catch (Exception ex){
                 System.out.println(ex);
             }
-            
+
         }
 
     }
