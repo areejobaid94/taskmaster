@@ -86,20 +86,6 @@ public class AddTaskActivity extends AppCompatActivity {
                 if((!titleField.getText().equals(null)) && !titleField.getText().toString().equals("") && !bodyField.getText().equals(null) && !bodyField.getText().toString().equals("")){
 
                     AppDataBase.getAppDataBase(getApplicationContext()).taskDao().insertAll(new Task(titleField.getText().toString(),bodyField.getText().toString(), State.values()[selectedItem],key,is_img));
-//                    try {
-//                        Task item = Task.builder()
-//                                .title(titleField.getText().toString())
-//                                .body(bodyField.getText().toString())
-//                                .state(State.values()[selectedItem])
-//                                .build();
-//                        Amplify.DataStore.save(item,
-//                                success -> Log.i("Tutorial", "Saved item: " + success.item().getTitle()),
-//                                error -> Log.e("Tutorial", "Could not save item to DataStore", error)
-//                        );
-//                        Log.i("Tutorial", "Initialized Amplify");
-//                    } catch (Exception e) {
-//                        Log.e("Tutorial", "Could not initialize Amplify", e);
-//                    }
                     TextView submitted  =  findViewById(R.id.submitted);
                     submitted.setText("submitted!");
                     startActivity(intent);
@@ -119,6 +105,53 @@ public class AddTaskActivity extends AppCompatActivity {
                 submitted.setText("Fill out all required fields");
             }
         });
+        Intent intent = getIntent();
+        Uri selectedImage = intent.getData();
+        if(selectedImage != null){
+            // Figure out what to do based on the intent type
+            // Handle intents with image data ...
+            File file = new File(getApplicationContext().getFilesDir(),"uploads");
+            System.out.println("file");
+            System.out.println(file);
+            System.out.println(selectedImage);
+            key = this.fileName;
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            if (cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String filePath = cursor.getString(columnIndex);
+                String pathEnd =  filePath.substring(filePath.lastIndexOf(".")).toUpperCase();
+                System.out.println(pathEnd);
+                System.out.println(pathEnd == ".JPG");
+                if(pathEnd.equals(".JPG") || pathEnd.equals(".PNG") || pathEnd.equals(".TIFF") || pathEnd.equals(".GIF") || pathEnd.equals(".PSD") || pathEnd.equals(".PDF") || pathEnd.equals(".EPS") || pathEnd.equals(".AI") || pathEnd.equals(".INDD") || pathEnd.equals(".RAW") ){
+                    is_img = true;
+                }
+            }
+            cursor.close();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(selectedImage);
+//                FileUtils.copy(inputStream,new FileOutputStream(file));
+                try {
+                    OutputStream out = new FileOutputStream(file);
+                    try {
+                        // Transfer bytes from in to out
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = inputStream.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        uploadFile(file);
+                    } finally {
+                        out.close();
+                    }
+                }finally {
+                    inputStream.close();
+                }
+            }catch (Exception ex){
+                System.out.println(ex);
+            }
+            
+        }
 
     }
 
