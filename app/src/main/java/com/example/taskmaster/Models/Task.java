@@ -22,6 +22,9 @@ public class Task {
     @ColumnInfo(name = "isImg")
     public boolean isImg;
 
+    @ColumnInfo(name = "location")
+    public String location;
+
     @PrimaryKey(autoGenerate = true)
     public int uid;
 
@@ -32,6 +35,16 @@ public class Task {
         this.key = key;
         this.isImg = isImg;
     }
+
+    public Task(String title, String body, State state,String key,boolean isImg, String location) {
+        this.title = title;
+        this.body = body;
+        this.state = state;
+        this.key = key;
+        this.isImg = isImg;
+        this.location  = location;
+    }
+
     public Task() {
     }
 }

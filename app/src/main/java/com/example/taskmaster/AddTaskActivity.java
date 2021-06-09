@@ -2,11 +2,17 @@ package com.example.taskmaster;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,21 +38,30 @@ import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.taskmaster.Databases.AppDataBase;
 import com.example.taskmaster.Models.State;
 import com.example.taskmaster.Models.Task;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class AddTaskActivity extends AppCompatActivity {
+    private FusedLocationProviderClient fusedLocationClient;
+    private String myLocation = "";
     private Spinner spinner;
     private static final String[] paths = {"new", "assigned", "in progress","complete"};
     private int selectedItem;
     private String fileName;
     private String key = "";
     private boolean is_img = false;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +99,8 @@ public class AddTaskActivity extends AppCompatActivity {
                 EditText titleField = (EditText)findViewById(R.id.title);
                 EditText bodyField = (EditText)findViewById(R.id.body);
                 if((!titleField.getText().equals(null)) && !titleField.getText().toString().equals("") && !bodyField.getText().equals(null) && !bodyField.getText().toString().equals("")){
-
-                    AppDataBase.getAppDataBase(getApplicationContext()).taskDao().insertAll(new Task(titleField.getText().toString(),bodyField.getText().toString(), State.values()[selectedItem],key,is_img));
+                    System.out.println(myLocation);
+                    AppDataBase.getAppDataBase(getApplicationContext()).taskDao().insertAll(new Task(titleField.getText().toString(),bodyField.getText().toString(), State.values()[selectedItem],key,is_img,myLocation));
                     TextView submitted  =  findViewById(R.id.submitted);
                     submitted.setText("submitted!");
                     startActivity(intent);
@@ -151,8 +166,29 @@ public class AddTaskActivity extends AppCompatActivity {
                 System.out.println(ex);
             }
 
-        }
 
+        }
+        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},2);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            Geocoder geocoder = new Geocoder(AddTaskActivity.this, Locale.getDefault());
+                            try {
+                                List<Address> address=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),3);
+                                myLocation = address.get(0).getCountryName();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                });
     }
 
     private void getFile(){
