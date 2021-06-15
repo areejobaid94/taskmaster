@@ -31,6 +31,10 @@ public class TaskDetailActivity extends AppCompatActivity {
         textViewDescription.setText(getIntent().getExtras().getString("description"));
         String key = getIntent().getExtras().getString("key");
         String isImg = getIntent().getExtras().getString("is_img");
+        String location = getIntent().getExtras().getString("location");
+        TextView textLocation= findViewById(R.id.location);
+        textLocation.setText(location);
+
         System.out.println(key);
         System.out.println(isImg);
         System.out.println(getIntent().getExtras().getString("description"));

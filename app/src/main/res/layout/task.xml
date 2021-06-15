@@ -79,6 +79,15 @@
                 android:visibility="gone"
                 tools:layout_editor_absoluteX="246dp"
                 tools:layout_editor_absoluteY="6dp" />
+
+            <TextView
+                android:id="@+id/my_Location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="94dp"
+                tools:layout_editor_absoluteY="8dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 <!--    </androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

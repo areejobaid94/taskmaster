@@ -20,7 +20,7 @@ public abstract class AppDataBase extends RoomDatabase {
         if(appDataBase == null){
             synchronized (AppDataBase.class){
                 if(appDataBase == null) {
-                    appDataBase = Room.databaseBuilder(context,AppDataBase.class,"task").allowMainThreadQueries().build();
+                    appDataBase = Room.databaseBuilder(context,AppDataBase.class,"tasks").allowMainThreadQueries().build();
                 }
             }
         }

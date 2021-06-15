@@ -53,4 +53,16 @@
         app:layout_constraintVertical_bias="0.602"
         app:srcCompat="@android:drawable/ic_menu_mapmode" />
 
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.565" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
